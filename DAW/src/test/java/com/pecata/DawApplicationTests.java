@@ -3,6 +3,7 @@ package com.pecata;
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -85,6 +86,17 @@ public class DawApplicationTests {
 		pdr.save(pedido);
 		
 		assertEquals("Margarita",pdr.findById(2).get().getPedidos().get(0).getProducto().getNombre());
+		
+	}
+	
+	@Test
+	public void M5removeProductoDelPedido() {
+		
+		PedidoVO pedido = pdr.findById(2).get();
+		List<ProductoEstaEnPedidoVO> carrito = pedido.getPedidos();
+		
+		
+		
 		
 	}
 
