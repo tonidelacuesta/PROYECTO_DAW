@@ -54,6 +54,15 @@ public class PedidoVO {
 		this.pedidos = pedidos;
 		this.cliente = cliente;
 	}
+	
+	
+
+	public PedidoVO(LocalDate fecha_pedido, String direccion_envio, UsuarioVO cliente) {
+		super();
+		this.fecha_pedido = fecha_pedido;
+		this.direccion_envio = direccion_envio;
+		this.cliente = cliente;
+	}
 
 	public PedidoVO() {
 		super();
