@@ -1,5 +1,6 @@
 package com.pecata.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,10 +14,10 @@ import javax.persistence.Table;
 public class ProductoEstaEnPedidoVO {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idproductoestaenpedido;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idproducto")
 	private ProductoVO producto;
 	
@@ -70,6 +71,7 @@ public class ProductoEstaEnPedidoVO {
 		this.pedido = pedido;
 	}
 
+<<<<<<< HEAD
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -77,6 +79,42 @@ public class ProductoEstaEnPedidoVO {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
+=======
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idproductoestaenpedido;
+		result = prime * result + ((pedido == null) ? 0 : pedido.hashCode());
+		result = prime * result + ((producto == null) ? 0 : producto.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductoEstaEnPedidoVO other = (ProductoEstaEnPedidoVO) obj;
+		if (idproductoestaenpedido != other.idproductoestaenpedido)
+			return false;
+		if (pedido == null) {
+			if (other.pedido != null)
+				return false;
+		} else if (!pedido.equals(other.pedido))
+			return false;
+		if (producto == null) {
+			if (other.producto != null)
+				return false;
+		} else if (!producto.equals(other.producto))
+			return false;
+		return true;
+	}
+	
+>>>>>>> refs/heads/junit_test
 	
 	
 	

@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class PedidoVO {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idpedido;
 	
 	private LocalDate fecha_pedido;
@@ -52,6 +52,15 @@ public class PedidoVO {
 		this.fecha_pedido = fecha_pedido;
 		this.direccion_envio = direccion_envio;
 		this.pedidos = pedidos;
+		this.cliente = cliente;
+	}
+	
+	
+
+	public PedidoVO(LocalDate fecha_pedido, String direccion_envio, UsuarioVO cliente) {
+		super();
+		this.fecha_pedido = fecha_pedido;
+		this.direccion_envio = direccion_envio;
 		this.cliente = cliente;
 	}
 

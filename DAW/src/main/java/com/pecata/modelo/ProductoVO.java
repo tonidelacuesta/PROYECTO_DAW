@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class ProductoVO {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idproducto;
 	
 	private String nombre;
@@ -90,6 +90,46 @@ public class ProductoVO {
 	public void setProductos(List<ProductoEstaEnPedidoVO> productos) {
 		this.productos = productos;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idproducto;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(precio);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((tamanyo == null) ? 0 : tamanyo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductoVO other = (ProductoVO) obj;
+		if (idproducto != other.idproducto)
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (Double.doubleToLongBits(precio) != Double.doubleToLongBits(other.precio))
+			return false;
+		if (tamanyo == null) {
+			if (other.tamanyo != null)
+				return false;
+		} else if (!tamanyo.equals(other.tamanyo))
+			return false;
+		return true;
+	}
+	
 	
 	
 	
