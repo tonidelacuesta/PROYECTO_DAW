@@ -17,6 +17,7 @@ import com.pecata.modelo.PedidoVO;
 import com.pecata.modelo.ProductoEstaEnPedidoVO;
 import com.pecata.modelo.ProductoVO;
 import com.pecata.modelo.UsuarioVO;
+import com.pecata.repository.DetallePedidoRepository;
 import com.pecata.repository.PedidoRepository;
 import com.pecata.repository.ProductoRepository;
 import com.pecata.repository.UsuarioRepository;
@@ -34,6 +35,9 @@ public class DawApplicationTests {
 	
 	@Autowired
 	UsuarioRepository ur;
+	
+	@Autowired
+	DetallePedidoRepository dpr;
 	
 	@Test
 	public void M1insertaUsuario() {
@@ -69,7 +73,7 @@ public class DawApplicationTests {
 		
 		PedidoVO nuevo_pedido = new PedidoVO(fecha_pedido,direccion_envio,user);
 		pdr.save(nuevo_pedido);
-		assertEquals("Calle oscura",pdr.findById(2).get().getDireccion_envio());
+		assertEquals("Calle oscura",pdr.findById(1).get().getDireccion_envio());
 		
 		
 	}
@@ -77,7 +81,7 @@ public class DawApplicationTests {
 	@Test
 	public void M4addProductoAlPedido() {
 		
-		PedidoVO pedido = pdr.findById(2).get();
+		PedidoVO pedido = pdr.findById(1).get();
 		ProductoVO p1 = pr.findByNombre("Margarita");
 		
 		ProductoEstaEnPedidoVO detallePedido = new ProductoEstaEnPedidoVO(p1,pedido);
@@ -85,19 +89,45 @@ public class DawApplicationTests {
 		pedido.addProducto(detallePedido);
 		pdr.save(pedido);
 		
-		assertEquals("Margarita",pdr.findById(2).get().getPedidos().get(0).getProducto().getNombre());
+		assertEquals("Margarita",pdr.findById(1).get().getPedidos().get(0).getProducto().getNombre());
 		
 	}
 	
 	@Test
 	public void M5removeProductoDelPedido() {
 		
-		PedidoVO pedido = pdr.findById(2).get();
+		PedidoVO pedido = pdr.findById(1).get();
+		ProductoVO p = pr.findByNombre("Margarita");
+		pedido.removeProducto(p);
+		
+		try {
+			pdr.save(pedido);
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("no se ha podido actualizar el pedido");
+		}
+		
 		List<ProductoEstaEnPedidoVO> carrito = pedido.getPedidos();
-		
-		
-		
+		assertEquals(1, carrito.size());
+//		assertEquals("Margarita",pedido.getPedidos().get(0).getProducto().getNombre());
 		
 	}
+	
+//	@Test
+//	public void M6addNuevoProductoAlPedido() {
+//		
+//		PedidoVO pedido = pdr.findById(1).get();
+//		ProductoVO p2 = new ProductoVO("4 Estaciones","Mediana",7.5,null);
+//		
+//		ProductoEstaEnPedidoVO detallePedido = new ProductoEstaEnPedidoVO(p2,pedido);
+//		
+//		pedido.addProducto(detallePedido);
+//		pdr.save(pedido);
+//		
+////		assertEquals("4 Estaciones",pdr.findById(1).get().getPedidos().get(1).getProducto().getNombre());
+//		assertEquals(2,pdr.findById(1).get().getPedidos().size());
+//	}
+	
+	
 
 }
