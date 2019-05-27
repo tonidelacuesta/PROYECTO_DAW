@@ -113,20 +113,20 @@ public class DawApplicationTests {
 		
 	}
 	
-//	@Test
-//	public void M6addNuevoProductoAlPedido() {
-//		
-//		PedidoVO pedido = pdr.findById(1).get();
-//		ProductoVO p2 = new ProductoVO("4 Estaciones","Mediana",7.5,null);
-//		
-//		ProductoEstaEnPedidoVO detallePedido = new ProductoEstaEnPedidoVO(p2,pedido);
-//		
-//		pedido.addProducto(detallePedido);
-//		pdr.save(pedido);
-//		
-////		assertEquals("4 Estaciones",pdr.findById(1).get().getPedidos().get(1).getProducto().getNombre());
-//		assertEquals(2,pdr.findById(1).get().getPedidos().size());
-//	}
+	@Test
+	public void M6addNuevoProductoAlPedido() {
+		
+		PedidoVO pedido = pdr.findById(1).get();
+		ProductoVO p2 = new ProductoVO("4 Estaciones","Mediana",7.5,null);
+		
+		ProductoEstaEnPedidoVO detallePedido = new ProductoEstaEnPedidoVO(p2,pedido);
+		
+		pedido.addProducto(detallePedido);
+		pdr.save(pedido);
+		
+//		assertEquals("4 Estaciones",pdr.findById(1).get().getPedidos().get(1).getProducto().getNombre());
+		assertEquals(2,pdr.findById(1).get().getPedidos().size());
+	}
 	
 	
 
