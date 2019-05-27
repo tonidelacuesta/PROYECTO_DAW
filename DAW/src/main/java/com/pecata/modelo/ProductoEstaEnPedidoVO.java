@@ -17,25 +17,30 @@ public class ProductoEstaEnPedidoVO {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idproductoestaenpedido;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="idproducto")
 	private ProductoVO producto;
 	
 	@ManyToOne
 	@JoinColumn(name="idpedido")
 	private PedidoVO pedido;
+	
+	private int cantidad;
 
-	public ProductoEstaEnPedidoVO(int idproductoestaenpedido, ProductoVO producto, PedidoVO pedido) {
+
+	public ProductoEstaEnPedidoVO(int idproductoestaenpedido, ProductoVO producto, PedidoVO pedido, int cantidad) {
 		super();
 		this.idproductoestaenpedido = idproductoestaenpedido;
 		this.producto = producto;
 		this.pedido = pedido;
+		this.cantidad = cantidad;
 	}
 
-	public ProductoEstaEnPedidoVO(ProductoVO producto, PedidoVO pedido) {
+	public ProductoEstaEnPedidoVO(ProductoVO producto, PedidoVO pedido,int cantidad) {
 		super();
 		this.producto = producto;
 		this.pedido = pedido;
+		this.cantidad = cantidad;
 	}
 
 	public ProductoEstaEnPedidoVO() {
@@ -64,6 +69,15 @@ public class ProductoEstaEnPedidoVO {
 
 	public void setPedido(PedidoVO pedido) {
 		this.pedido = pedido;
+	}
+
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
 	@Override
@@ -100,6 +114,7 @@ public class ProductoEstaEnPedidoVO {
 		return true;
 	}
 	
+
 	
 	
 	
