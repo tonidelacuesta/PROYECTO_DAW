@@ -84,7 +84,7 @@ public class DawApplicationTests {
 		PedidoVO pedido = pdr.findById(1).get();
 		ProductoVO p1 = pr.findByNombre("Margarita");
 		
-		ProductoEstaEnPedidoVO detallePedido = new ProductoEstaEnPedidoVO(p1,pedido);
+		ProductoEstaEnPedidoVO detallePedido = new ProductoEstaEnPedidoVO(p1,pedido,1);
 		
 		pedido.addProducto(detallePedido);
 		pdr.save(pedido);
@@ -108,8 +108,8 @@ public class DawApplicationTests {
 		}
 		
 		List<ProductoEstaEnPedidoVO> carrito = pedido.getPedidos();
-		assertEquals(1, carrito.size());
-//		assertEquals("Margarita",pedido.getPedidos().get(0).getProducto().getNombre());
+//		assertEquals(1, carrito.size());
+		assertEquals("Margarita",pedido.getPedidos().get(0).getProducto().getNombre());
 		
 	}
 	

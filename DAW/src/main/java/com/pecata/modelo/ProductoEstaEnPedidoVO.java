@@ -17,7 +17,7 @@ public class ProductoEstaEnPedidoVO {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idproductoestaenpedido;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="idproducto")
 	private ProductoVO producto;
 	
@@ -71,7 +71,7 @@ public class ProductoEstaEnPedidoVO {
 		this.pedido = pedido;
 	}
 
-<<<<<<< HEAD
+
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -79,7 +79,7 @@ public class ProductoEstaEnPedidoVO {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-=======
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -114,7 +114,7 @@ public class ProductoEstaEnPedidoVO {
 		return true;
 	}
 	
->>>>>>> refs/heads/junit_test
+
 	
 	
 	
