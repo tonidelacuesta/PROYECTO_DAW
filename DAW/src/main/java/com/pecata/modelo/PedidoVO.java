@@ -29,7 +29,7 @@ public class PedidoVO {
 	
 	private String direccion_envio;
 	
-	@OneToMany(mappedBy="pedido",cascade= {CascadeType.ALL}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="pedido",cascade= {CascadeType.ALL}, fetch=FetchType.EAGER,orphanRemoval=true)
 	private List<ProductoEstaEnPedidoVO> pedidos = new ArrayList<ProductoEstaEnPedidoVO>();
 	
 	@ManyToOne
@@ -115,11 +115,19 @@ public class PedidoVO {
 	public List<ProductoEstaEnPedidoVO> removeProducto(ProductoVO p) {
 		Iterator<ProductoEstaEnPedidoVO> it=pedidos.iterator();
 		ProductoEstaEnPedidoVO a=new ProductoEstaEnPedidoVO();
-		while(it.hasNext()) {
-			a=it.next();
-			if (p.equals(a.getProducto()))
-				it.remove();
+		System.out.println("Npedidos 1º-> "+pedidos.size());
+
+		try {
+			while(it.hasNext()) {
+				a=it.next();
+				if (p.equals(a.getProducto()))
+					it.remove();
+			}
+		} catch (Exception e) {
+			System.out.println("Erro -> "+e.getStackTrace());
 		}
+		System.out.println("Npedidos 2º-> "+pedidos.size());
+
 		return pedidos;
 	}
 

@@ -1,6 +1,7 @@
 package com.pecata.modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,7 @@ public class ProductoVO {
 	
 	private double precio;
 	
-	@OneToMany(mappedBy="producto",cascade= {CascadeType.ALL}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="producto",fetch=FetchType.EAGER,orphanRemoval=true)
 	private List<ProductoEstaEnPedidoVO> productos = new ArrayList<ProductoEstaEnPedidoVO>();
 
 	public ProductoVO(int idproducto, String nombre, String tamanyo, double precio,
@@ -90,6 +91,30 @@ public class ProductoVO {
 	public void setProductos(List<ProductoEstaEnPedidoVO> productos) {
 		this.productos = productos;
 	}
+	
+	public void addPedido(ProductoEstaEnPedidoVO producto) {
+		this.productos.add(producto);
+	}
+	
+	public List<ProductoEstaEnPedidoVO> removePedido(PedidoVO pd) {
+		Iterator<ProductoEstaEnPedidoVO> it=productos.iterator();
+		ProductoEstaEnPedidoVO a=new ProductoEstaEnPedidoVO();
+		
+
+		try {
+			while(it.hasNext()) {
+				a=it.next();
+				if (pd.equals(a.getPedido()))
+					it.remove();
+			}
+		} catch (Exception e) {
+			System.out.println("Erro -> "+e.getStackTrace());
+		}
+		
+
+		return productos;
+	}
+	
 
 	@Override
 	public int hashCode() {
