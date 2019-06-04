@@ -1,0 +1,31 @@
+.estadoPedido{
+    font-size: .7em;
+    color:brown;
+    padding:0;
+    padding-left: 5px;
+    margin:0;
+}
+.admin{
+    font-size:2em;
+}
+.infoCliente{
+    
+    font-size:1em;
+    
+}
+.principal{
+    background-color: #e8ecf2;
+}
+.colorCopiaAlert{
+    background-color: #d1ecf1;
+}
+.textoAlert{
+    color:#0c5460;
+}
+.nav-link{
+    color:white;
+    font-size: 1.2em;
+}
+.activo{
+    color:#007bff;
+}

@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 @Entity
 @Table(name="pedido")
@@ -30,6 +33,7 @@ public class PedidoVO {
 	private String direccion_envio;
 	
 	@OneToMany(mappedBy="pedido",cascade= {CascadeType.ALL}, fetch=FetchType.EAGER,orphanRemoval=true)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<ProductoEstaEnPedidoVO> pedidos = new ArrayList<ProductoEstaEnPedidoVO>();
 	
 	@ManyToOne

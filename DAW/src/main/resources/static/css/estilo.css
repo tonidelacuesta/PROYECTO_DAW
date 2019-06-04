@@ -1,0 +1,117 @@
+.menu-registro{
+    text-transform: uppercase;
+    font-weight: bolder;
+    
+}
+.menu-registro>li>a{
+    color:black;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+}
+.borde-l-registro{
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+.borde-r-registro{
+    border-right: 1px solid black;
+}
+li.active>a{
+    color:red;
+}
+li.active-on>a{
+    color:white;
+}
+div.carousel-item>img{
+    max-height: 70%;
+}
+div.banner{
+    height:400px;
+   
+    background-image: url(../imagenes/pizzaILoveYou.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    
+}
+.nombre_producto{
+    text-transform: uppercase;
+    border-bottom:1px solid black;
+    margin-bottom:15px;
+    margin-right: 15px;
+}
+
+.lista_ingredientes{
+    
+    color:red;
+    font-size:1.2em;
+    margin-top:15px;
+}
+img :not(.logo){
+    height:300px;
+    width:auto;
+}  
+a.enlace_productos{
+    text-decoration:none;
+    color:black;
+}
+.logo img{
+    border-radius: 90px;
+    padding:5px;
+} 
+.circulo{
+    background-color: red;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    margin:auto;
+} 
+.titulo-tarjeta{
+    margin-top:8px;
+    color:red;
+    font-size:1.3em;
+    text-transform: uppercase;
+}
+.texto-tarjeta{
+    color:white;
+    font-size:1em;
+    width:70%;
+    margin:auto;
+}
+.texto-footer p, a{
+    color:orange;
+   
+}
+.texto-footer > p:first-child{
+    border-top:1px solid orange;
+}
+.texto-footer > p > a{
+    text-decoration: none;
+}
+.texto-footer > p > a:hover{
+    color:inherit;
+}
+.login{
+    
+    display:none;
+    position:absolute;
+    right: 0;
+    top:47px;
+    width:35%;
+    float:right;
+    background-color:#dc3545;
+    color:white;
+    padding:40px 50px 70px 50px;
+    
+}
+#cierra-login{
+    
+    float:right;
+    background-color:rgba(0,0,0,0.2);
+    color:white;
+    
+}
+.form-registro{
+    background-color:#e8e8eb;
+}
+div.formulario{
+    display:none;
+}

@@ -14,19 +14,19 @@ public class RolesUsuariosVO {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int rolesusuarios;
+	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="idrol")
+	@JoinColumn(name="role_id")
 	private RolVO rol;
 	
 	@ManyToOne
-	@JoinColumn(name="idusuario")
+	@JoinColumn(name="user_id")
 	private UsuarioVO usuario;
 
 	public RolesUsuariosVO(int rolesusuarios, RolVO rol, UsuarioVO usuario) {
 		super();
-		this.rolesusuarios = rolesusuarios;
+		this.id = rolesusuarios;
 		this.rol = rol;
 		this.usuario = usuario;
 	}
@@ -42,11 +42,11 @@ public class RolesUsuariosVO {
 	}
 
 	public int getRolesusuarios() {
-		return rolesusuarios;
+		return id;
 	}
 
 	public void setRolesusuarios(int rolesusuarios) {
-		this.rolesusuarios = rolesusuarios;
+		this.id = rolesusuarios;
 	}
 
 	public RolVO getRol() {

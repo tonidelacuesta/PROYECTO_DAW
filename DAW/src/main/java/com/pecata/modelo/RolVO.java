@@ -1,60 +1,46 @@
 package com.pecata.modelo;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.persistence.UniqueConstraint;
+ 
 @Entity
-@Table(name="rol")
+@Table(name = "roles",  uniqueConstraints = { @UniqueConstraint(name = "ROLES_UK", columnNames = "Role_Name") })
 public class RolVO {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idrol;
-	
-	private String tipo;
-	
-	@OneToMany(mappedBy="rol")
-	private List<RolesUsuariosVO> roles = new ArrayList<RolesUsuariosVO>();
-
-	public RolVO(int idrol, String tipo, List<RolesUsuariosVO> roles) {
-		super();
-		this.idrol = idrol;
-		this.tipo = tipo;
-		this.roles = roles;
-	}
-
-	public RolVO(String tipo, List<RolesUsuariosVO> roles) {
-		super();
-		this.tipo = tipo;
-		this.roles = roles;
-	}
-
-	public RolVO() {
-		super();
-	}
-
-	public int getIdrol() {
-		return idrol;
-	}
-
-	public void setIdrol(int idrol) {
-		this.idrol = idrol;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+     
+    @Id
+    @GeneratedValue
+    @Column(name = "Role_Id", nullable = false)
+    private Long roleId;
+ 
+    @Column(name = "Role_Name", length = 30, nullable = false)
+    private String roleName;
+ 
+    @OneToMany(mappedBy="rol",fetch=FetchType.EAGER,cascade= {CascadeType.ALL}, orphanRemoval = true)
+	private List<RolesUsuariosVO> roles;
+    public Long getRoleId() {
+        return roleId;
+    }
+ 
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+ 
+    public String getRoleName() {
+        return roleName;
+    }
+ 
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 
 	public List<RolesUsuariosVO> getRoles() {
 		return roles;
@@ -63,8 +49,5 @@ public class RolVO {
 	public void setRoles(List<RolesUsuariosVO> roles) {
 		this.roles = roles;
 	}
-	
-	
-	
-
+     
 }
